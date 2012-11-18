@@ -3,10 +3,10 @@
 
 import MyMath
 
-main = print $ sieve 501
+main = print $ solve 501
 
-sieve :: Int -> Int
-sieve n = head . filter ((>=n) . factorCount) $ map nthTri [1..]
+solve :: Int -> Int
+solve n = head . filter ((>=n) . factorCount) $ map nthTri [1..]
 
 nthTri :: Int -> Int
 nthTri n = n * (n + 1) `div` 2
