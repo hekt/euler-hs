@@ -19,7 +19,7 @@ collatzLengths :: Int -> [(Int, Int)]
 collatzLengths n = assocs ary
     where ary = listArray (1, n) [clzLen m m | m <- [1..n]]
           clzLen 1 _ = 1
-          clzLen x y
-              | x < y = (ary ! x)
-              | even x    = 1 + clzLen (x `div` 2) y
-              | otherwise = 1 + clzLen (x * 3 + 1) y
+          clzLen l m
+              | l < m = (ary ! l)
+              | even l    = 1 + clzLen (l `div` 2) m
+              | otherwise = 1 + clzLen (l * 3 + 1) m
