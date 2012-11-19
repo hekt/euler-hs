@@ -1,5 +1,9 @@
--- Project Euler Problem 13
--- Find the first ten digits of the sum of one-hundred 50-digit numbers.
+{- 
+   Problem 13
+   Find the first ten digits of the sum of one-hundred 50-digit numbers.
+   
+   http://projecteuler.net/problem=13
+ -}
 
 import System.IO
 

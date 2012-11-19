@@ -1,3 +1,10 @@
+{- 
+   # Problem 3
+   Find the largest prime factor of a composite number.
+
+   http://projecteuler.net/problem=3
+ -}
+
 main :: IO()
 main = print . head $ primeFactors 600851475143
 

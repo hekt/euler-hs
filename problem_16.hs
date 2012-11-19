@@ -1,5 +1,9 @@
--- 16: What is the sum of the digits of the number 2^1000?
--- http://projecteuler.net/problem=16
+{- 
+   Problem 16
+   What is the sum of the digits of the number 2^1000?
+   
+   http://projecteuler.net/problem=16
+ -}
 
 main = print $ sumOfDigs (2^1000)
 

@@ -1,3 +1,10 @@
+{- 
+   Problem 7
+   Find the 1001st prime.
+   
+   http://projecteuler.net/problem=7
+ -}
+
 main :: IO()
 main = print . last $ nPrimes 10001
 

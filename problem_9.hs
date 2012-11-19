@@ -1,3 +1,10 @@
+{- 
+   Problem 9
+   Find the only Pythagorean triplet, {a, b, c}, for which a + b + c = 1000.
+   
+   http://projecteuler.net/problem=9
+ -} 
+
 main :: IO()
 main = print . (\(x,y,z) -> x*y*z) $ head . filter isPythagoras $ triplesSumTo 1000
 

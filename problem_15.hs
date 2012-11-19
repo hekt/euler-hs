@@ -1,7 +1,10 @@
--- Project Euler Problem 15
-
--- Starting in the top left corner in a 20 by 20 grid, how many routes are 
--- there to the bottom right corner?
+{- 
+   Problem 15
+   Starting in the top left corner in a 20 by 20 gtid, how many routes are 
+   there to the bottomright corner?
+   
+   http://projecteuler.net/problem=15
+ -}
 
 import MyMath (fact)
 

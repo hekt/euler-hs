@@ -1,5 +1,9 @@
--- 18: Find the maximum sum travelling from the top of the triangle to the base
--- http://projecteuler.net/problem=18
+{- 
+   Problem 18
+   Find the maximum sum travelling from the top of the triangle to the base.
+   
+   http://projecteuler.net/problem=18
+ -}
 
 import System.IO
 import Data.Array

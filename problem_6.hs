@@ -1,3 +1,11 @@
+{- 
+   Problem 6
+   What is the difference between the sum of the squares and the aquare of the 
+   sum?
+   
+   http://projecteuler.net/problem=6
+ -}
+
 main :: IO()
 main = print $ squareTwoOfSum nums - sumOfSquareTwo nums
     where nums = [1..100]

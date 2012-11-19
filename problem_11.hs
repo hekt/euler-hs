@@ -1,3 +1,11 @@
+{- 
+   Problem 11
+   What is the greatest product of four adjacent number on the same straight 
+   line in th 20 by 20 grid?
+   
+   http://projecteuler.net/problem=11
+ -}
+
 import System.IO
 import Data.Maybe
 

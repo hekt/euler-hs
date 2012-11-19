@@ -1,3 +1,10 @@
+{- 
+   Problem 14
+   Find the longest sequence using a starting number under on million.
+   
+   http://projecteuler.net/problem=14
+ -}
+
 import Data.List (foldl1')
 import Data.Ord (comparing)
 import Data.Array

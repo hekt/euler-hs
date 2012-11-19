@@ -1,3 +1,10 @@
+{- 
+   Problem 5
+   What is the smallest number divisible by each of the numbers 1 to 20?
+
+   http://projecteuler.net/problem=5
+ -}
+
 main :: IO()
 main = print $ foldl1 lcm' nums
        where nums = [ (20 `div` 2 + 1) .. 20 ]

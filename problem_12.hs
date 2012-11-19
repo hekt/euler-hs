@@ -1,5 +1,10 @@
--- Project Euler Problem 12
--- What is the first triangular number that has more than 501 divisors.
+{- 
+   Problem 12
+   What is the value of the first triangle number to have over five hundred 
+   divisors?
+   
+   http://projecteuler.net/problem=12
+ -}
 
 import MyMath
 

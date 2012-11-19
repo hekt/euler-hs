@@ -1,3 +1,9 @@
+{- 
+   # Problem 4
+   Find the largest palindrome made from the product of two 3-digit numbers.
+
+   http://projecteuler.net/problem=4
+ -}
 main :: IO()
 main = print $ maximumOfPalindNum' 100 999
 

@@ -1,6 +1,10 @@
--- 17: How many latters would be needed to write all the numbers in word from 1
---     to 1000?
--- http://projecteuler.net/problem=17
+{- 
+   Problem 17
+   How many latters would be needed to write all the numbers in word from 1 to 
+   1000?
+   
+   http://projecteuler.net/problem=17
+ -}
 
 import Data.Maybe (fromJust)
 import qualified Data.Map as M

@@ -1,3 +1,10 @@
+{- 
+   Problem 10
+   Calculate the sum of all the primes below two million.
+   
+   http://projecteuler.net/problem=10
+ -}
+
 main :: IO()
 main = print . sum $ takeWhile (<= 200000) primes
 
