@@ -4,6 +4,7 @@ module MyMath
     , primes
     , isPrime
     , sumOfDigits
+    , sumOfDivs
     ) where
 
 isqrt :: Integral a => a -> a
@@ -28,3 +29,8 @@ isPrime n = ip (2: [3, 5 .. (isqrt n)])
 
 sumOfDigits :: (Integral c, Read c, Show a) => a -> c
 sumOfDigits n = sum . map (read . (:[])) $ show n
+
+sumOfDivs :: Int -> Int
+sumOfDivs n = 1 + sum [ x' | x <- [2 .. (isqrt n)]
+                      , let r = n `mod` x, r == 0, let m = n `div` x
+                      , let x' = if x == m then x else x + m]
