@@ -15,7 +15,7 @@ solve n = sum $ amicables n
 
 sumOfDivs :: Int -> Int
 sumOfDivs n = 1 + sum [ x | x <- [2 .. (n `div` 2)]
-                       , n `mod` x == 0]
+                      , n `mod` x == 0 ]
 
 amicables :: Int -> [Int]
 amicables n = [ x | x <- [1..n] , let x' = ary ! x
