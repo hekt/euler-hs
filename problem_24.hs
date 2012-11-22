@@ -6,19 +6,13 @@
  -}
 
 import MyMath (fact)
+import MyList (pop)
 import Data.List (sort)
 
 main = print . concat . map show $ solve (10^6) [0..9]
 
 solve :: Int -> [Int] -> [Int]
 solve n xs = nthPerm n $ sort xs
-
-pop :: Int -> [a] -> (a, [a])
-pop n xs = (xs !! (n-1), f 1 xs)
-    where f _ (_:[]) = []
-          f c (y:ys)
-              | c == n    = ys
-              | otherwise = y : f (c+1) ys
 
 nthPerm :: Int -> [a] -> [a]
 nthPerm _ [] = []
