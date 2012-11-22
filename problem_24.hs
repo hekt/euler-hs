@@ -20,5 +20,5 @@ nthPerm n xs
     | r == 0    = y : reverse ys
     | otherwise = z : nthPerm r zs
     where (q, r) = divMod n $ fact (length xs - 1)
-          (y, ys) = pop q xs
-          (z, zs) = pop (q+1) xs
+          (y, ys) = pop (q-1) xs
+          (z, zs) = pop q xs

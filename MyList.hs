@@ -3,4 +3,4 @@ module MyList
     ) where
 
 pop :: Int -> [a] -> (a, [a])
-pop n xs = (xs !! (n-1), take (n-1) xs ++ drop n xs)
+pop n xs = (xs !! n, take n xs ++ drop (n+1) xs)
