@@ -14,9 +14,8 @@ solve :: Int -> [Int] -> [Int]
 solve n xs = nthPerm n xs
 
 pop :: Int -> [a] -> (a, [a])
-pop n xs = ((xs !! n'), f 1 xs)
-    where n' = n - 1
-          f _ (_:[]) = []
+pop n xs = (xs !! (n-1), f 1 xs)
+    where f _ (_:[]) = []
           f c yys@(y:ys)
               | c == n    = tail yys
               | otherwise = y : f (c+1) ys
