@@ -16,8 +16,8 @@ solve n xs = nthPerm n xs
 pop :: Int -> [a] -> (a, [a])
 pop n xs = (xs !! (n-1), f 1 xs)
     where f _ (_:[]) = []
-          f c yys@(y:ys)
-              | c == n    = tail yys
+          f c (y:ys)
+              | c == n    = ys
               | otherwise = y : f (c+1) ys
 
 nthPerm :: Ord a => Int -> [a] -> [a]
@@ -26,8 +26,8 @@ nthPerm n xs = nthPerm' n $ sort xs
 nthPerm' :: Int -> [a] -> [a]
 nthPerm' _ [] = []
 nthPerm' n xs 
-    | r == 0         = y : reverse ys
-    | otherwise      = z : nthPerm' r zs
+    | r == 0    = y : reverse ys
+    | otherwise = z : nthPerm' r zs
     where (q, r) = divMod n $ fact (length xs - 1)
           (y, ys) = pop q xs
           (z, zs) = pop (q+1) xs
