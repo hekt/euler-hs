@@ -11,7 +11,7 @@ main = print $ solve 100
 
 solve :: Integer -> Int
 solve n = length $ f nums M.empty
-    where nums = [(a^b) | a <- [2..n], b <- [2..n]]
+    where nums = [ a^b | a <- [2..n], b <- [2..n] ]
           f [] d = M.keys d
           f (x:xs) d
             | M.member x d = f xs d
