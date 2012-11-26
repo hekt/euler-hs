@@ -6,6 +6,7 @@ module MyList
     , int2list'
     , list2int
     , combs
+    , repCombs
     ) where
 
 import Data.List
@@ -38,3 +39,8 @@ combs :: [a] -> Int -> [[a]]
 combs [] _ = []
 combs xs 1 = map (:[]) xs
 combs (x:xs) n = [ x:y | y <- combs xs (n-1) ] ++ combs xs n
+
+repCombs :: [a] -> Int -> [[a]]
+repCombs [] _ = []
+repCombs xs 1 = map (:[]) xs
+repCombs xxs@(x:xs) n = [ x:y | y <- repCombs xxs (n-1)] ++ repCombs xs n
