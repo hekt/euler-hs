@@ -5,6 +5,7 @@ module MyMath
     , isPrime
     , sumOfDigits
     , sumOfDivs
+    , reduction
     ) where
 
 isqrt :: Integral a => a -> a
@@ -34,3 +35,7 @@ sumOfDivs :: Int -> Int
 sumOfDivs n = 1 + sum [ x' | x <- [2 .. (isqrt n)]
                       , let r = n `mod` x, r == 0, let m = n `div` x
                       , let x' = if x == m then x else x + m]
+
+reduction :: Integral a => (a, a) -> (a, a)
+reduction (n, d) = (n `div` g, d `div` g)
+    where g = gcd n d
