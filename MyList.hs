@@ -7,6 +7,7 @@ module MyList
     , list2int
     , combs
     , repCombs
+    , repPerms
     ) where
 
 import Data.List
@@ -44,3 +45,8 @@ repCombs :: [a] -> Int -> [[a]]
 repCombs [] _ = []
 repCombs xs 1 = map (:[]) xs
 repCombs xxs@(x:xs) n = [ x:y | y <- repCombs xxs (n-1)] ++ repCombs xs n
+
+repPerms :: [a] -> Int -> [[a]]
+repPerms [] _ = []
+repPerms xs 1 = map (:[]) xs
+repPerms xs n = [ x:y | x <- xs, y <- repPerms xs (n-1)]
