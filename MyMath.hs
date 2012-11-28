@@ -6,6 +6,7 @@ module MyMath
     , sumOfDigits
     , sumOfDivs
     , reduction
+    , int2bin, bin2int
     ) where
 
 isqrt :: Integral a => a -> a
@@ -39,3 +40,13 @@ sumOfDivs n = 1 + sum [ x' | x <- [2 .. (isqrt n)]
 reduction :: Integral a => (a, a) -> (a, a)
 reduction (n, d) = (n `div` g, d `div` g)
     where g = gcd n d
+
+int2bin :: Integral a => a -> [a]
+int2bin 0 = [0]
+int2bin 1 = [1]
+int2bin n = int2bin q ++ [r]
+    where (q, r) = divMod n 2
+
+bin2int :: Integral a => [a] -> a
+bin2int [] = 0
+bin2int (n:ns) = n * 2 ^ length ns + bin2int ns
