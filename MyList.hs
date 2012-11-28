@@ -8,6 +8,7 @@ module MyList
     , combs
     , repCombs
     , repPerms
+    , isPalindrome
     ) where
 
 import Data.List
@@ -50,3 +51,8 @@ repPerms :: [a] -> Int -> [[a]]
 repPerms [] _ = []
 repPerms xs 1 = map (:[]) xs
 repPerms xs n = [ x:y | x <- xs, y <- repPerms xs (n-1)]
+
+isPalindrome :: Eq a => [a] -> Bool
+isPalindrome xs
+    | xs == reverse xs = True
+    | otherwise        = False
