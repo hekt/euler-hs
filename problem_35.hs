@@ -16,6 +16,7 @@ solve1 = 2: 5: [ x | x <- primes', let x' = int2list x, f x', g x' ]
           f ns = all (==False) $ map (flip elem ns) [2,4,5,6,8]
           g ns = all isPrime . map list2int . tail $ rotates ns
 
+solve2 :: [[Int]]
 solve2 = [2]: [5]: filter f ps
     where ps = concatMap (repPerms [1,3,7,9]) [1..6]
           f ns = all isPrime . map list2int $ rotates ns
