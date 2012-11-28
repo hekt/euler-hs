@@ -11,6 +11,7 @@ import MyList (int2list, list2int)
 
 main = print $ sum solve
 
+solve :: [Int]
 solve = take 11 [ n | n <- primes', f $ int2list n ]
     where primes' = dropWhile (< 10) primes
           f ns = (all' . body $ inits ns) && (all' . body $ tails ns)
