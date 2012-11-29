@@ -7,6 +7,7 @@ module MyMath
     , sumOfDivs
     , reduction
     , int2bin, bin2int
+    , isInt
     ) where
 
 isqrt :: Integral a => a -> a
@@ -50,3 +51,6 @@ int2bin n = int2bin q ++ [r]
 bin2int :: Integral a => [a] -> a
 bin2int [] = 0
 bin2int (n:ns) = n * 2 ^ length ns + bin2int ns
+
+isInt :: RealFrac a => a -> Bool
+isInt n = floor n == ceiling n
