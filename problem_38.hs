@@ -11,7 +11,7 @@ import MyList (int2list)
 main = print solve
 
 solve :: Int
-solve = last $ filter isPandigital [1..9999]
+solve = head $ filter isPandigital [9999,9998..1]
 
 isPandigital :: Int -> Bool
 isPandigital n = isPandigital' $ scanl f (int2list n) [2..9]
