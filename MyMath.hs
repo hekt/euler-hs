@@ -8,7 +8,10 @@ module MyMath
     , reduction
     , int2bin, bin2int
     , isInt
+    , factorization, factorization'
     ) where
+
+import Data.List (sort)
 
 isqrt :: Integral a => a -> a
 isqrt = floor . sqrt . fromIntegral
@@ -54,3 +57,18 @@ bin2int (n:ns) = n * 2 ^ length ns + bin2int ns
 
 isInt :: RealFrac a => a -> Bool
 isInt n = floor n == ceiling n
+
+factorization :: Int -> [(Int, Int)]
+factorization n = f $ factorization' n (2:[3,5..])
+    where
+      f [] = []
+      f xxs@(x:xs) = (x, y) : f (drop y xxs)
+          where y = length $ takeWhile (==x) xxs
+
+factorization' :: Int -> [Int] -> [Int]
+factorization' 1 _ = []
+factorization' n pps@(p:ps)
+    | p * p > n = [n]
+    | r == 0 = p: factorization' q pps
+    | otherwise = factorization' n ps
+    where (q, r) = divMod n p
