@@ -9,6 +9,7 @@ module MyList
     , repCombs
     , repPerms
     , isPalindrome
+    , lasts
     ) where
 
 import Data.List
@@ -56,3 +57,6 @@ isPalindrome :: Eq a => [a] -> Bool
 isPalindrome xs
     | xs == reverse xs = True
     | otherwise        = False
+
+lasts :: Int -> [a] -> [a]
+lasts n xs = drop (length xs - n) xs
