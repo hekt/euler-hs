@@ -11,13 +11,25 @@ import MyMath (isPrime)
 main = print solve
 
 solve :: Int
-solve = head [x | x <- primes, f x, g $ ps x]
-    where primes = [n | n <- [56003,56005..], isPrime n]
-          f x = any (\y -> above (==y) 3 $ int2list x) [0,1,2]
-          g xs = any (above isPrime 8) xs
-          ps n = map e $ combs [1.. digits n - 1] 3
-              where e ds = filter ((==digits n) . digits) $
-                           map (\x -> changeDigits n ds x) [0..9]
+solve = head [x | x <- primes, sieve (cnt x) x]
+    where 
+      primes = [n | n <- [10001,10003..], isPrime n]
+      sieve n x
+          | n < 3     = False
+          | n == 3    = check $ perms 3 x
+          | otherwise = (check $ perms n x) || sieve (n-1) x
+      cnt x = maximum $ map (\y -> count (==y) $ int2list x) [0,1,2]
+      check xs = any (above isPrime 8) xs
+      perms n x = map e $ combs [1 .. digx - 1] n
+          where digx = digits x
+                e ds = filter ((==digx) . digits) $
+                       map (\y -> changeDigits x ds y) [0..9]
+
+count :: (a -> Bool) -> [a] -> Int
+count _ [] = 0
+count f (x:xs)
+    | f x = 1 + count f xs
+    | otherwise = count f xs
 
 above :: (a -> Bool) -> Int -> [a] -> Bool
 above f n xs = above' xs 0
