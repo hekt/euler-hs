@@ -5,14 +5,13 @@ module MyList
     , int2list
     , int2list'
     , list2int
-    , combs
-    , repCombs
-    , repPerms
+    , combs, repCombs
+    , perms, repPerms
     , isPalindrome
     , lasts
     ) where
 
-import Data.List
+import Data.List (permutations, foldl1')
 
 pop :: Int -> [a] -> (a, [a])
 pop n xs = (xs !! n, take n xs ++ drop (n+1) xs)
@@ -42,6 +41,9 @@ combs :: [a] -> Int -> [[a]]
 combs [] _ = []
 combs xs 1 = map (:[]) xs
 combs (x:xs) n = [ x:y | y <- combs xs (n-1) ] ++ combs xs n
+
+perms :: [a] -> Int -> [[a]]
+perms xs n = concatMap permutations $ combs xs n
 
 repCombs :: [a] -> Int -> [[a]]
 repCombs [] _ = []
