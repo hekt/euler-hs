@@ -41,27 +41,23 @@ vRead 'K' = 13
 vRead c   = read [c]
 
 isWin :: Hand -> Hand -> Bool
-isWin a b
-    | fst a' > fst b' = True
-    | fst a' < fst b' = False
-    | otherwise       = f (snd a') (snd b')
+isWin a b = a' > b'
     where a' = hand a
           b' = hand b
-          f [] _ = (highVals $ values a) > (highVals $ values b)
-          f xs ys = xs > ys
 
-hand :: Hand -> (Int, [Value])
+hand :: Hand -> (Int, [Value], [Value])
 hand h
-    | isJust $ royalFlush h    = (9, fromJust $ royalFlush h)
-    | isJust $ straightFlush h = (8, fromJust $ straightFlush h)
-    | isJust $ fourOfAKind h   = (7, fromJust $ fourOfAKind h)
-    | isJust $ fullHouse h     = (6, fromJust $ fullHouse h)
-    | isJust $ flush h         = (5, fromJust $ flush h)
-    | isJust $ straight h      = (4, fromJust $ straight h)
-    | isJust $ threeOfAKind h  = (3, fromJust $ threeOfAKind h)
-    | isJust $ twoPairs h      = (2, fromJust $ twoPairs h)
-    | isJust $ onePair h       = (1, fromJust $ onePair h)
-    | otherwise                = (0, highCard h)
+    | isJust $ royalFlush h    = (9, fromJust $ royalFlush h,    [])
+    | isJust $ straightFlush h = (8, fromJust $ straightFlush h, [])
+    | isJust $ fourOfAKind h   = (7, fromJust $ fourOfAKind h,   highVals h')
+    | isJust $ fullHouse h     = (6, fromJust $ fullHouse h,     [])
+    | isJust $ flush h         = (5, fromJust $ flush h,         [])
+    | isJust $ straight h      = (4, fromJust $ straight h,      [])
+    | isJust $ threeOfAKind h  = (3, fromJust $ threeOfAKind h,  highVals h')
+    | isJust $ twoPairs h      = (2, fromJust $ twoPairs h,      highVals h')
+    | isJust $ onePair h       = (1, fromJust $ onePair h,       highVals h')
+    | otherwise                = (0, highCard h,                 [])
+    where h' = values h
 
 vSucc :: Value -> Value
 vSucc 14 = 2
