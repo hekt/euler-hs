@@ -12,6 +12,7 @@ module MyMath
     ) where
 
 import Data.List (sort)
+import Data.Char (digitToInt)
 
 isqrt :: Integral a => a -> a
 isqrt = floor . sqrt . fromIntegral
@@ -33,8 +34,8 @@ isPrime n = ip (2: [3, 5 .. (isqrt n)])
               | n `mod` x == 0 = False
               | otherwise = ip xs
 
-sumOfDigits :: (Integral a, Integral c, Read c, Show a) => a -> c
-sumOfDigits n = sum . map (read . (:[])) $ show n
+sumOfDigits :: (Show a) => a -> Int
+sumOfDigits n = sum . map digitToInt $ show n
 
 sumOfDivs :: Int -> Int
 sumOfDivs n = 1 + sum [ x' | x <- [2 .. (isqrt n)]
