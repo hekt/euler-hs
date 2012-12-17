@@ -26,7 +26,6 @@ brute :: [Int] -> [Int]
 brute s = head . filter f $ map (code s) keys
     where keys = perms [ord 'a' .. ord 'z'] 3
           f x = all (flip elem (words $ map chr x)) ["the", "of", "and"]
-              where ws = words $ map chr x
 
 code :: [Int] -> [Int] -> [Int]
 code xs ks = zipWith xor xs (cycle ks)
