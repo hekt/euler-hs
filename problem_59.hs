@@ -29,11 +29,3 @@ brute s = head . filter f $ map (code s) keys
 
 code :: [Int] -> [Int] -> [Int]
 code xs ks = zipWith xor xs (cycle ks)
-
-count :: [Int] -> [(Int, Int)]
-count ns = count' $ sort ns
-
-count' :: [Int] -> [(Int, Int)]
-count' [] = []
-count' ns = (len, head ns): count' (drop len ns)
-    where len = length $ takeWhile (==head ns) ns
