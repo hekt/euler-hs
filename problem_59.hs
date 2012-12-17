@@ -8,7 +8,6 @@
 import System.IO
 import Data.Char (ord, chr)
 import Data.Bits (xor)
-import Data.List (sort)
 import MyList (perms)
 
 main = do
