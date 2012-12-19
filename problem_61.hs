@@ -13,9 +13,9 @@ solve = head [ reverse $ head ns | p <- ps, let ns = f p, ns /= [] ]
     where
       f (xs:xss) = filter isCycle $
                    foldl (\acc x -> cyclicals acc x) (map (:[]) xs) xss
-      ps = permutations $ map fourDigits [ triangles, squares, pentagonals
-                                         , hexagonals, heptagonals
-                                         , octagonals ]
+      ps = map (fourDigits octagonals:) . permutations $ 
+           map fourDigits [ triangles, squares, pentagonals
+                          , hexagonals, heptagonals ]
 
 cyclicals :: [[Int]] -> [Int] -> [[Int]]
 cyclicals xs ys = concatMap f xs
