@@ -14,8 +14,8 @@ solve n = head [x | x <- cubes, f x == n]
       cubes' = map (sort . int2list) $ cubes
       sameDigitsCubes' x = takeWhile ((==d) . length) $
                            dropWhile ((/=d) . length) cubes'
-          where d = length $ int2list x
-      f x = length . filter (==x') $ sameDigitsCubes' x
+          where d = length x
+      f x = length . filter (==x') $ sameDigitsCubes' x'
           where x' = sort $ int2list x
 
 cubes :: Integral a => [a]
