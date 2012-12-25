@@ -3,7 +3,6 @@
   http://projecteuler.net/problem=68
  -}
 
-import Data.List (permutations)
 import MyList (pop)
 
 type Ring = [(Int, Int, Int)]
@@ -11,11 +10,11 @@ type Ring = [(Int, Int, Int)]
 main = print solve
 
 solve :: Integer
-solve = maximum [ring2int ring | ns <- nss, check ns,
-                 let ring = list2ring ns, isMagicRing ring]
-    where nss = concatMap (gen [1..10]) [0..5]
+solve = head [ring2int ring | ns <- nss, check ns,
+              let ring = list2ring ns, isMagicRing ring]
+    where nss = concatMap (gen ([9,8 .. 1]++[10])) [3..8]
           gen ys x = let (n,ns) = pop x ys
-                     in map (n:) $ permutations ns
+                     in map (n:) $ permutations' ns
           check (n:ns) = let ns' = map (ns !!) [2,4,6,8]
                          in all (n<) ns' && any (==10) ns'
 
@@ -33,3 +32,9 @@ ring2int  :: (Integral a, Read a) => Ring -> a
 ring2int ring = read $ f ring
     where f []           = []
           f ((a,b,c):ds) = concatMap show [a,b,c] ++ f ds
+
+permutations' :: [a] -> [[a]]
+permutations' [] = [[]]
+permutations' xs = concat [map (x':) (permutations' xs') | (x',xs') <- f xs]
+    where f [] = []
+          f (y:ys) = (y, ys): [(y', y:ys') | (y', ys') <- f ys]
