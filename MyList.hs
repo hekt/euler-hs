@@ -5,6 +5,7 @@ module MyList
     , int2list
     , int2list'
     , list2int
+    , permutations'
     , combs, repCombs
     , perms, repPerms
     , isPalindrome
@@ -36,6 +37,13 @@ int2list' n
 list2int :: Integral a => [a] -> a
 list2int [] = 0
 list2int (n:ns) = n * 10 ^ length ns + list2int ns
+
+permutations' :: [a] -> [[a]]
+permutations' [] = [[]]
+permutations' xs = concat [map (x':) (permutations' xs') | (x',xs') <- f xs]
+    where f [] = []
+          f (y:ys) = (y, ys): [(y', y:ys') | (y', ys') <- f ys]
+
 
 combs :: [a] -> Int -> [[a]]
 combs [] _ = []
