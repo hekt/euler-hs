@@ -2,8 +2,7 @@ module MyList
     ( pop
     , maximumBy'
     , maxBy
-    , int2list
-    , int2list'
+    , int2list, int2list'
     , list2int
     , permutations'
     , combs, repCombs
@@ -38,6 +37,7 @@ list2int :: Integral a => [a] -> a
 list2int [] = 0
 list2int (n:ns) = n * 10 ^ length ns + list2int ns
 
+-- http://www.sampou.org/cgi-bin/haskell.cgi?Programming%3A%B6%CC%BC%EA%C8%A2%3A%C1%C8%B9%E7%A4%BB
 permutations' :: [a] -> [[a]]
 permutations' [] = [[]]
 permutations' xs = concat [map (x':) (permutations' xs') | (x',xs') <- f xs]
