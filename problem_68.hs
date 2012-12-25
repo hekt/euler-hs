@@ -25,7 +25,7 @@ isMagicRing (t:ts) = all ((==sum3 t) . sum3) ts
       sum3 (a,b,c) = a+b+c
 
 list2ring  :: [Int] -> Ring
-list2ring (a:b:c:ds) = f b (a:c:ds)
+list2ring (a:b:cs) = f b (a:cs)
     where f n (x:[])   = (x,n,b): []
           f n (x:y:zs) = (x,n,y): f y zs
 
