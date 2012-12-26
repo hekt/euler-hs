@@ -9,6 +9,7 @@ module MyMath
     , int2bin, bin2int
     , isInt
     , factorization, factorization'
+    , cfracs
     ) where
 
 import Data.List (sort)
@@ -73,3 +74,13 @@ factorization' n pps@(p:ps)
     | r == 0 = p: factorization' q pps
     | otherwise = factorization' n ps
     where (q, r) = divMod n p
+
+cfracs :: Integral a => a -> (a, [a])
+cfracs n = (tr, f 1 tr)
+    where tr = truncate . sqrt $ fromIntegral n
+          f x y = let x' = (n - y ^ 2) `div` x
+                      y' = tr - (tr + y) `mod` x'
+                      a  = (tr + y) `div` x'
+                  in if x' == 1 && y' == tr
+                     then a : []
+                     else a : f x' y'
