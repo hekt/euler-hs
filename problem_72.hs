@@ -11,8 +11,8 @@ import MyList (sum')
 main = print $ solve (10^6)
 
 solve :: (Integral a, Ix a) => a -> a
-solve limit = sum' $ map (ary !) [2..limit]
-    where ary = listArray (1, limit) [totient n | n <- [1..limit]]
+solve limit = sum' $ elems ary
+    where ary = listArray (2, limit) [totient n | n <- [2..limit]]
           totient p
               | isPrime p   = p - 1
               | isJust fact = let (a_, b_) = fromJust fact
