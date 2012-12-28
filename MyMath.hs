@@ -10,9 +10,11 @@ module MyMath
     , isInt
     , factorization, factorization'
     , cfracs
+    , sum'
+    , phi, phi'
     ) where
 
-import Data.List (sort)
+import Data.List (sort, foldl1')
 import Data.Char (digitToInt)
 
 isqrt :: Integral a => a -> a
@@ -60,14 +62,14 @@ bin2int (n:ns) = n * 2 ^ length ns + bin2int ns
 isInt :: RealFrac a => a -> Bool
 isInt n = floor n == ceiling n
 
-factorization :: Int -> [(Int, Int)]
+factorization :: Integral a => a -> [(a, a)]
 factorization n = f $ factorization' n (2:[3,5..])
     where
       f [] = []
-      f xxs@(x:xs) = (x, y) : f (drop y xxs)
+      f xxs@(x:xs) = (x, fromIntegral y) : f (drop y xxs)
           where y = length $ takeWhile (==x) xxs
 
-factorization' :: Int -> [Int] -> [Int]
+factorization' :: Integral a => a -> [a] -> [a]
 factorization' 1 _ = []
 factorization' n pps@(p:ps)
     | p * p > n = [n]
@@ -84,3 +86,16 @@ cfracs n = (tr, f 1 tr)
                   in if x' == 1 && y' == tr
                      then a : []
                      else a : f x' y'
+
+sum' :: Integral a => [a] -> a
+sum' ns = foldl1' (+) ns
+
+phi :: Integral a => a -> a
+phi n = if isPrime n then n - 1
+        else phi' n
+
+phi' :: Integral a => a -> a
+phi' n = truncate $ fromIntegral n * (product . map f $ factorization n)
+    where f (p,_) = let p' = fromIntegral p
+                    in 1 - 1 / p'
+
