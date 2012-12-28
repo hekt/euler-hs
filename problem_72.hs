@@ -5,7 +5,8 @@
 
 import Data.Array
 import Data.Maybe (isJust, fromJust)
-import MyMath (isPrime, sum', phi')
+import MyMath (isPrime, phi')
+import MyList (sum')
 
 main = print $ solve (10^6)
 
