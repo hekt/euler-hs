@@ -10,11 +10,10 @@ module MyMath
     , isInt
     , factorization, factorization'
     , cfracs
-    , sum'
     , phi, phi'
     ) where
 
-import Data.List (sort, foldl1')
+import Data.List (sort)
 import Data.Char (digitToInt)
 
 isqrt :: Integral a => a -> a
@@ -86,9 +85,6 @@ cfracs n = (tr, f 1 tr)
                   in if x' == 1 && y' == tr
                      then a : []
                      else a : f x' y'
-
-sum' :: Integral a => [a] -> a
-sum' ns = foldl1' (+) ns
 
 phi :: Integral a => a -> a
 phi n = if isPrime n then n - 1

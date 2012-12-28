@@ -9,6 +9,7 @@ module MyList
     , perms, repPerms
     , isPalindrome
     , lasts
+    , sum'
     ) where
 
 import Data.List (permutations, foldl1')
@@ -70,3 +71,6 @@ isPalindrome xs
 
 lasts :: Int -> [a] -> [a]
 lasts n xs = drop (length xs - n) xs
+
+sum' :: Integral a => [a] -> a
+sum' ns = foldl1' (+) ns
