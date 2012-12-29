@@ -7,6 +7,6 @@ main = print $ solve 12000
 
 solve :: Integral a => a -> a
 solve lim = f 2 3
-    where f a b = let ab = a + b
-                  in if ab > lim then 0
-                     else 1 + f a ab + f b ab
+    where f a b = let c = a + b
+                  in if c > lim then 0
+                     else 1 + f a c + f b c
