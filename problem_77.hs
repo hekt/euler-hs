@@ -8,10 +8,12 @@ import MyMath (primes)
 main = print $ solve 5000
 
 solve :: Int -> Int
-solve n = f (1:repeat 0) primes 2
+solve n = f (1:repeat 0) primes
     where
-      f xs (p:ps) c = let (x, s) = splitAt p xs
-                          xs'    = x ++ g x s
-                      in if xs' !! c >= n then c
-                         else f xs' ps (c+1)
+      f xs (p:ps) = let (x, s) = splitAt p xs
+                        xs'    = x ++ g x s
+                    in if xs' !! p >= n then h (p-1) xs'
+                       else f xs' ps
       g (m:ms) (n:ns) = let mn = m + n in mn : g (ms++[mn]) ns
+      h i xs = if xs !! i >= n then h (i-1) xs
+               else i+1
