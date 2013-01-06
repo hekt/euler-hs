@@ -19,21 +19,20 @@ formatting :: String -> [[Int]]
 formatting str = map (map (read . (:[]))) $ lines str
 
 search :: [[Int]] -> Maybe [Int]
-search nss = let mss = map (:[]) . nub $ map head nss in f mss
+search nss = f . nub $ map ((:[]) . head) nss
     where 
       f []               = Nothing
       f (xxs@(x:_) : qs) = let nexts = findNexts x nss
                                xxs'  = reverse xxs
-                           in if null nexts && check xxs' nss then Just xxs'
+                           in if null nexts && check xxs' nss
+                              then Just xxs'
                               else f $ qs ++ map (:xxs) nexts
 
 findNexts :: Eq a => a -> [[a]] -> [a]
-findNexts x yss = nub $ f x yss
-    where f _ []       = []
-          f x (ys:yss) = let i = elemIndex x ys
-                             i' = fromJust i + 1
-                         in if isNothing i then f x yss
-                            else drop i' ys ++ f x yss
+findNexts x yss = nub $ concatMap f yss
+    where f ys = let i = elemIndex x ys
+                 in if isNothing i then []
+                    else drop (fromJust i + 1) ys
 
 check :: [Int] -> [[Int]] -> Bool
 check ns mss = all f mss
