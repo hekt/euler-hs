@@ -38,7 +38,6 @@ check :: [Int] -> [[Int]] -> Bool
 check ns mss = all f mss
     where f (_:[])   = True
           f (x:y:zs) = case (elemIndex x ns, elemIndex y ns) of 
-                         (Nothing, _) -> False
-                         (_, Nothing) -> False
                          (Just x', Just y') | x' > y'   -> False
                                             | otherwise -> f (y:zs)
+                         otherwise -> False
