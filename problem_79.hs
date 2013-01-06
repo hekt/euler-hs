@@ -30,16 +30,17 @@ search nss = f . nub $ map ((:[]) . head) nss
 
 findNexts :: Eq a => a -> [[a]] -> [a]
 findNexts x yss = nub $ concatMap f yss
-    where f ys = let i = elemIndex x ys
-                 in if isNothing i then []
-                    else drop (fromJust i + 1) ys
+    where f ys = case elemIndex x ys of 
+                   Nothing -> []
+                   Just n  -> drop (n+1) ys
+
+
 
 check :: [Int] -> [[Int]] -> Bool
 check ns mss = all f mss
     where f (_:[]) = True
-          f (x:y:zs) | isNothing x' = False
-                     | isNothing y' = False
-                     | fromJust x' > fromJust y' = False
-                     | otherwise                 = f (y:zs)
-                     where x' = elemIndex x ns
-                           y' = elemIndex y ns
+          f (x:y:zs) = case (elemIndex x ns, elemIndex y ns) of 
+                         (Nothing, _) -> False
+                         (_, Nothing) -> False
+                         (Just x', Just y') | x' > y'   -> False
+                                            | otherwise -> f (y:zs)
