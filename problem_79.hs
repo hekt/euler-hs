@@ -10,7 +10,6 @@ import MyList (list2int)
 main = do
   withFile "inputs/problem_79.txt" ReadMode $ \handle -> do
          nss <- fmap formatting $ hGetContents handle
-         let result = search nss
          case search nss of
            Nothing -> print "Nothing"
            Just ns -> print $ list2int ns
@@ -30,9 +29,7 @@ search nss = f . nub $ map ((:[]) . head) nss
 
 findNexts :: Eq a => a -> [[a]] -> [a]
 findNexts x yss = nub $ concatMap f yss
-    where f ys = case elemIndex x ys of 
-                   Nothing -> []
-                   Just n  -> drop (n+1) ys
+    where f ys = maybe [] (\n -> drop (n+1) ys) $ elemIndex x ys
 
 check :: [Int] -> [[Int]] -> Bool
 check ns mss = all f mss
